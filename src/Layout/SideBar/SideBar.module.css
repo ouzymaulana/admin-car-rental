@@ -1,0 +1,13 @@
+.sidebarMenu {
+  display: flex;
+  height: 100vh !important;
+  width: 290px !important;
+  background-color: #ffffff;
+}
+
+.sidebarLogo {
+  margin: 18px;
+  width: 34px;
+  height: 34px;
+  background-color: #cfd4ed;
+}
