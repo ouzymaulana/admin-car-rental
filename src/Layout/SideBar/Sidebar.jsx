@@ -1,6 +1,8 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
 import style from "./SideBar.module.css";
+import { FiHome } from "react-icons/fi";
+import { IoCarSportOutline } from "react-icons/io5";
 
 const Sidebar = () => {
   return (
@@ -13,17 +15,28 @@ const Sidebar = () => {
       >
         <div className={style.sidebarMenu}>
           <div
+            className="d-flex flex-column gap-3"
             style={{
               width: "70px",
               backgroundColor: "#0D28A6",
             }}
           >
             <div className={style.sidebarLogo}></div>
-            <Nav.Item>
-              <Nav.Link href="/home">Active</Nav.Link>
+            <Nav.Item
+              className={`${style.navItem} d-flex justify-content-between align-items-center justify-content-center flex-column text-white`}
+            >
+              <FiHome size={26} />
+              <span className={style.navLink} href="/home">
+                Dashboard
+              </span>
             </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="link-1">Link</Nav.Link>
+            <Nav.Item
+              className={`${style.navItem} d-flex justify-content-between align-items-center justify-content-center flex-column text-white`}
+            >
+              <IoCarSportOutline size={26} />
+              <span className={style.navLink} href="/home">
+                Cars
+              </span>
             </Nav.Item>
           </div>
           <div style={{ width: "100%", marginTop: "70px" }}>
