@@ -4,12 +4,22 @@ import style from "./Navbar.module.css";
 import { TfiMenu } from "react-icons/tfi";
 import { Input } from "reactstrap";
 import { BiSearch } from "react-icons/bi";
-// import jwt from "jsonwebtoken";
+import { useNavigate } from "react-router-dom";
 
 const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
+  const navigate = useNavigate();
   const data = localStorage.getItem("token");
+  // const jwtData = jwt.decode(data);
+  // console.log("====================================");
+  // console.log(jwtData);
+  // console.log("====================================");
 
   // const decodedData = jwt.decode(data);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <Navbar expand="lg" className={`fixed-top ${style.navbarNav}`}>
       <Navbar.Brand href="#home" className={style.navbarBrand}></Navbar.Brand>
@@ -41,7 +51,9 @@ const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
         >
           <div className={style.profileName}>U</div>
           <NavDropdown title="Ouzy Maulana" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">LogOut</NavDropdown.Item>
+            <NavDropdown.Item onClick={handleLogout} href="#action/3.1">
+              LogOut
+            </NavDropdown.Item>
           </NavDropdown>
         </div>
       </div>
