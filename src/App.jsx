@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import SignIn from "./Pages/SignIn"
+import SignIn from "./Pages/SignIn";
 import Dashboard from "./Pages/Dashboard";
 
 function App() {
@@ -11,6 +11,10 @@ function App() {
     {
       path: "Dashboard",
       element: <Dashboard />,
+    },
+    {
+      path: "/",
+      element: <Cars />,
     },
   ]);
   return <RouterProvider router={router} />;
