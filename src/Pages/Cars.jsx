@@ -7,6 +7,7 @@ import axios from "axios";
 const Cars = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+
   const getDetailCar = async () => {
     const axiosConfig = {
       headers: {
@@ -16,10 +17,14 @@ const Cars = () => {
       },
     };
     try {
-      const response = await axios.get(
-        `https://api-car-rental.binaracademy.org/admin/car/${id}`,
-        axiosConfig
-      );
+      // const response = await axios.get(
+      //   `https://api-car-rental.binaracademy.org/admin/car/${id}`,
+      //   axiosConfig
+      // );
+
+      // console.log("====================================");
+      // console.log(response);
+      // console.log("====================================");
 
       if (!token) {
         navigate("/", { replace: true });
@@ -28,6 +33,7 @@ const Cars = () => {
       console.error(error);
     }
   };
+
   useEffect(() => {
     getDetailCar();
   }, []);

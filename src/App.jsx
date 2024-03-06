@@ -6,16 +6,16 @@ import CarList from "./Pages/Cars";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "SignIn",
+      path: "/",
       element: <SignIn />,
     },
     {
-      path: "Dashboard",
+      path: "/dashboard",
       element: <Dashboard />,
     },
     {
-      path: "CarList",
-      element: <Cars />,
+      path: "/cars",
+      element: <CarList />,
     },
   ]);
   return <RouterProvider router={router} />;
