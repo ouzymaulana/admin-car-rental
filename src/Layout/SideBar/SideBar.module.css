@@ -1,8 +1,8 @@
 .sidebarMenu {
   display: flex;
   height: 100vh !important;
-  width: 290px !important;
-  background-color: #ffffff;
+  /* width: 70px !important; */
+  /* background-color: #ffffff; */
 }
 
 .sidebarLogo {
@@ -20,5 +20,37 @@
 }
 
 .navItem {
+  cursor: pointer;
+}
+
+.subMenu {
+  width: 220px;
+  margin-top: 70px;
+  background-color: #ffffff;
+  transition: 0.5s;
+}
+
+.subMenuHeader {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  width: 100%;
+  margin-top: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  padding-left: 24px;
+  color: #8a8a8a;
+}
+
+.menuItem {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  width: 100%;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  padding-left: 24px;
+  background-color: #cfd4ed;
   cursor: pointer;
 }
