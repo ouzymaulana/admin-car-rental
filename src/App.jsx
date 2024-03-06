@@ -1,11 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SignIn from "./Pages/SignIn";
 import Dashboard from "./Pages/Dashboard";
+import CarList from "./Pages/Cars";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "SignIn",
       element: <SignIn />,
     },
     {
@@ -13,7 +14,7 @@ function App() {
       element: <Dashboard />,
     },
     {
-      path: "/",
+      path: "CarList",
       element: <Cars />,
     },
   ]);
