@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Button, NavDropdown, Navbar } from "react-bootstrap";
 import style from "./Navbar.module.css";
 import { TfiMenu } from "react-icons/tfi";
 import { Input } from "reactstrap";
@@ -9,12 +9,6 @@ import { useNavigate } from "react-router-dom";
 const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
   const navigate = useNavigate();
   const userEmail = localStorage.getItem("userEmailLogin");
-  // const jwtData = jwt.decode(data);
-  // console.log("====================================");
-  // console.log(jwtData);
-  // console.log("====================================");
-
-  // const decodedData = jwt.decode(data);
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
