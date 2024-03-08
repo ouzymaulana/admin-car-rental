@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
   const navigate = useNavigate();
-  const data = localStorage.getItem("token");
+  const userEmail = localStorage.getItem("userEmailLogin");
   // const jwtData = jwt.decode(data);
   // console.log("====================================");
   // console.log(jwtData);
@@ -19,6 +19,23 @@ const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
     localStorage.removeItem("token");
     navigate("/");
   };
+
+  function stringAvatar(name) {
+    const nameArray = name.split(" ");
+    if (nameArray.length >= 2) {
+      return {
+        children: `${nameArray[0][0]}${nameArray[1][0]}`,
+      };
+    } else if (nameArray.length === 1) {
+      return {
+        children: `${nameArray[0][0]}`,
+      };
+    } else {
+      return {
+        children: "",
+      };
+    }
+  }
 
   return (
     <Navbar expand="lg" className={`fixed-top ${style.navbarNav}`}>
@@ -49,8 +66,10 @@ const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
         <div
           className={`d-flex justify-content-center align-items-center ${style.profile}`}
         >
-          <div className={style.profileName}>U</div>
-          <NavDropdown title="Ouzy Maulana" id="basic-nav-dropdown">
+          <div className={style.profileName}>
+            {stringAvatar(userEmail).children.toUpperCase()}
+          </div>
+          <NavDropdown title={userEmail} id="basic-nav-dropdown">
             <NavDropdown.Item onClick={handleLogout} href="#action/3.1">
               LogOut
             </NavDropdown.Item>
