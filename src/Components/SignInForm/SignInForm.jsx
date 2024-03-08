@@ -43,6 +43,8 @@ function SignInForm() {
         if (result) {
           Cookies.set("token2", result.data.access_token, { expires: 1 / 24 });
           localStorage.setItem("token", result.data.access_token);
+          localStorage.setItem("userEmailLogin", result.data.email);
+          localStorage.setItem("userRoleLogin", result.data.role);
           navigate(`/dashboard`, { replace: true });
         }
       })
