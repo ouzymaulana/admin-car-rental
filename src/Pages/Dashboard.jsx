@@ -1,7 +1,5 @@
-import React from "react";
+import ChartData from "../Components/Chart/ChartData";
 import LayoutAdmin from "../Layout";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import ListOrderTable from "../Components/Table/ListOrderTable";
 
 const Dashboard = () => {
