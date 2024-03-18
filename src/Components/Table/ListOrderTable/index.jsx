@@ -12,6 +12,7 @@ const ListOrderTable = () => {
   const [page, setPage] = useState(1);
   const [tempPage, setTempPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [sortBy, setSortBy] = useState("");
 
   const handleGetListOrder = async () => {
     try {
@@ -24,7 +25,7 @@ const ListOrderTable = () => {
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTg3MDQ2OH0.WmZUb7_Bv6ml3HG4AMTC61xRIEZA7hU0WXSLM5IKouc",
           },
           params: {
-            sort: "created_ad",
+            sort: sortBy,
             page: page,
             pageSize: pageSize,
           },
@@ -42,7 +43,8 @@ const ListOrderTable = () => {
 
   useEffect(() => {
     handleGetListOrder();
-  }, [page, pageSize]);
+  }, [page, pageSize, sortBy]);
+
   return (
     <>
       <Table responsive>
@@ -52,7 +54,10 @@ const ListOrderTable = () => {
               <div className="d-flex justify-content-between">
                 <span>ID</span>
                 <span>
-                  <LuChevronsUpDown style={{ cursor: "pointer" }} />
+                  <LuChevronsUpDown
+                    onClick={() => setSortBy("id")}
+                    style={{ cursor: "pointer" }}
+                  />
                 </span>
               </div>
             </th>
@@ -60,7 +65,10 @@ const ListOrderTable = () => {
               <div className="d-flex justify-content-between">
                 <span>User Email</span>
                 <span>
-                  <LuChevronsUpDown style={{ cursor: "pointer" }} />
+                  <LuChevronsUpDown
+                    onClick={() => setSortBy("user_email:asc")}
+                    style={{ cursor: "pointer" }}
+                  />
                 </span>
               </div>
             </th>
@@ -68,7 +76,10 @@ const ListOrderTable = () => {
               <div className="d-flex justify-content-between">
                 <span>Car</span>
                 <span>
-                  <LuChevronsUpDown style={{ cursor: "pointer" }} />
+                  <LuChevronsUpDown
+                    onClick={() => setSortBy("car_name:asc")}
+                    style={{ cursor: "pointer" }}
+                  />
                 </span>
               </div>
             </th>
@@ -76,7 +87,10 @@ const ListOrderTable = () => {
               <div className="d-flex justify-content-between">
                 <span>Start Rent</span>
                 <span>
-                  <LuChevronsUpDown style={{ cursor: "pointer" }} />
+                  <LuChevronsUpDown
+                    onClick={() => setSortBy("start_rent_at")}
+                    style={{ cursor: "pointer" }}
+                  />
                 </span>
               </div>
             </th>
@@ -84,7 +98,10 @@ const ListOrderTable = () => {
               <div className="d-flex justify-content-between">
                 <span>Finish Rent</span>
                 <span>
-                  <LuChevronsUpDown style={{ cursor: "pointer" }} />
+                  <LuChevronsUpDown
+                    onClick={() => setSortBy("finish_rent_at")}
+                    style={{ cursor: "pointer" }}
+                  />
                 </span>
               </div>
             </th>
@@ -92,7 +109,10 @@ const ListOrderTable = () => {
               <div className="d-flex justify-content-between">
                 <span>Price</span>
                 <span>
-                  <LuChevronsUpDown style={{ cursor: "pointer" }} />
+                  <LuChevronsUpDown
+                    onClick={() => setSortBy("price")}
+                    style={{ cursor: "pointer" }}
+                  />
                 </span>
               </div>
             </th>
