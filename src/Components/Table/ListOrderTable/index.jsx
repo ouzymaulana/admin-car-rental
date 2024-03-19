@@ -66,7 +66,13 @@ const ListOrderTable = () => {
                 <span>User Email</span>
                 <span>
                   <LuChevronsUpDown
-                    onClick={() => setSortBy("user_email:asc")}
+                    onClick={() =>
+                      setSortBy((prev) =>
+                        prev === "user_email:asc"
+                          ? "user_email:desc"
+                          : "user_email:asc"
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   />
                 </span>
@@ -77,7 +83,13 @@ const ListOrderTable = () => {
                 <span>Car</span>
                 <span>
                   <LuChevronsUpDown
-                    onClick={() => setSortBy("car_name:asc")}
+                    onClick={() =>
+                      setSortBy((prev) =>
+                        prev === "car_name:asc"
+                          ? "car_name:desc"
+                          : "car_name:asc"
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   />
                 </span>
@@ -88,7 +100,13 @@ const ListOrderTable = () => {
                 <span>Start Rent</span>
                 <span>
                   <LuChevronsUpDown
-                    onClick={() => setSortBy("start_rent_at")}
+                    onClick={() =>
+                      setSortBy((prev) =>
+                        prev === "start_rent_at:asc"
+                          ? "start_rent_at:desc"
+                          : "start_rent_at:asc"
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   />
                 </span>
@@ -99,7 +117,13 @@ const ListOrderTable = () => {
                 <span>Finish Rent</span>
                 <span>
                   <LuChevronsUpDown
-                    onClick={() => setSortBy("finish_rent_at")}
+                    onClick={() =>
+                      setSortBy((prev) =>
+                        prev === "finish_rent_at:asc"
+                          ? "finish_rent_at:desc"
+                          : "finish_rent_at:asc"
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   />
                 </span>
@@ -110,7 +134,11 @@ const ListOrderTable = () => {
                 <span>Price</span>
                 <span>
                   <LuChevronsUpDown
-                    onClick={() => setSortBy("price")}
+                    onClick={() =>
+                      setSortBy((prev) =>
+                        prev === "price:asc" ? "price:desc" : "price:asc"
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   />
                 </span>
