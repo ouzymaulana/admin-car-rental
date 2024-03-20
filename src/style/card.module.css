@@ -1,0 +1,49 @@
+.cards {
+  margin: 40px 196px !important;
+  flex-wrap: wrap !important;
+}
+
+.carCard {
+  box-sizing: content-box !important;
+  width: 310px !important;
+  padding: 24px !important;
+}
+
+.cards .cardBody {
+  padding: 0 !important;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 8px !important;
+  /* text-align: justify; */
+}
+
+.cards .cardBody p:first-child {
+  font-weight: 400 !important;
+}
+
+.cards .cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cards .cardBody button {
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #5cb85f !important;
+  border-radius: 2px;
+  border: none;
+}
+
+@media (max-width: 360px) {
+  .cards {
+    margin: 40px 16px !important;
+    flex-direction: column;
+  }
+
+  .carCard {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    padding: 24px !important;
+  }
+}
