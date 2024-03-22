@@ -9,8 +9,13 @@ import {
   CardSubtitle,
   Container,
   Row,
+  Col,
 } from "react-bootstrap";
 import style from "../style/card.module.css";
+import Clock from "../assets/fi_clock.png";
+import Trash from "../assets/fi_trash-2.png";
+import Users from "../assets/fi_users.png";
+import Edit from "../assets/fi_edit.png";
 
 const Cars = () => {
   const [data, setData] = useState([]);
@@ -40,9 +45,8 @@ const Cars = () => {
   return (
     <LayoutAdmin>
       <div>Cars Menu</div>
-      <Button align="right"> + Add New Car</Button>
-      <div>
-        <Container>
+      <div className={style.cardlistcontainer}>
+        <Container className={style.container}>
           <Row>
             {data.map((item) => (
               <Card
@@ -56,12 +60,25 @@ const Cars = () => {
                   <Card.Title className={style.cardTitle}>
                     Rp {item.price} / hari
                   </Card.Title>
-                  <Card.Text>{item.category}</Card.Text>
+                  <Card.Text>
+                    <img src={Users} alt="user" />
+                    {item.category}
+                  </Card.Text>
                   <Card.Subtitle>{item.description}</Card.Subtitle>
-                  <Card.Subtitle>Updated at 4 Apr 2022, 09.00</Card.Subtitle>
+                  <Card.Subtitle>
+                    <img src={Clock} alt="clock" />
+                    Updated at 4 Apr 2022, 09.00
+                  </Card.Subtitle>
                   <ButtonGroup className="d grid gap-8" size="sm">
-                    <Button variant="outline-primary">Edit</Button>
-                    <Button variant="outline-danger">Delete</Button>
+                    <Button className="style.button" variant="success">
+                      <img src={Edit} alt="edit" />
+                      Edit
+                    </Button>
+                    <br></br>
+                    <Button className="style.button" variant="outline-danger">
+                      <img src={Trash} alt="trash" />
+                      Delete
+                    </Button>
                   </ButtonGroup>
                 </Card.Body>
               </Card>

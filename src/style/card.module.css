@@ -1,6 +1,6 @@
 .cards {
-  margin: 40px 196px !important;
-  flex-wrap: wrap !important;
+  margin: 48px 143.5px !important;
+  flex-direction: row !important;
 }
 
 .carCard {
@@ -26,7 +26,7 @@
   font-weight: 700;
 }
 
-.cards .cardBody button {
+.cards .cardBody .button {
   padding: 12px 0;
   font-size: 14px;
   font-weight: 700;
