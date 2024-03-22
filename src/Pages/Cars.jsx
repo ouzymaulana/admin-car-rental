@@ -49,39 +49,45 @@ const Cars = () => {
         <Container className={style.container}>
           <Row>
             {data.map((item) => (
-              <Card
-                style={{ width: "18rem" }}
-                className={style.carCard}
-                key={item.id}
-              >
-                <Card.Body className={style.cardBody}>
-                  <Card.Img src={item.image} />
-                  <Card.Title>{item.name}</Card.Title>
-                  <Card.Title className={style.cardTitle}>
-                    Rp {item.price} / hari
-                  </Card.Title>
-                  <Card.Text>
-                    <img src={Users} alt="user" />
-                    {item.category}
-                  </Card.Text>
-                  <Card.Subtitle>{item.description}</Card.Subtitle>
-                  <Card.Subtitle>
-                    <img src={Clock} alt="clock" />
-                    Updated at 4 Apr 2022, 09.00
-                  </Card.Subtitle>
-                  <ButtonGroup className="d grid gap-8" size="sm">
-                    <Button className="style.button" variant="success">
-                      <img src={Edit} alt="edit" />
-                      Edit
-                    </Button>
-                    <br></br>
-                    <Button className="style.button" variant="outline-danger">
-                      <img src={Trash} alt="trash" />
-                      Delete
-                    </Button>
-                  </ButtonGroup>
-                </Card.Body>
-              </Card>
+              <Col lg={5} md={7} sm={12} className="mb-4">
+                <Card
+                  style={{ width: "18rem" }}
+                  className={style.carCard}
+                  key={item.id}
+                >
+                  <Card.Body className={style.cardBody}>
+                    <Card.Img src={item.image} />
+                    <Card.Title>{item.name}</Card.Title>
+                    <Card.Title className={style.cardTitle}>
+                      Rp {item.price} / hari
+                    </Card.Title>
+                    <Card.Text>
+                      <img src={Users} alt="user" />
+                      {item.category}
+                    </Card.Text>
+                    <Card.Subtitle>{item.description}</Card.Subtitle>
+                    <Card.Subtitle>
+                      <img src={Clock} alt="clock" />
+                      Updated at 4 Apr 2022, 09.00
+                    </Card.Subtitle>
+                    <div className="d-grid gap-2">
+                      <ButtonGroup className="d grid gap-8" size="sm">
+                        <Button className="style.button" variant="success">
+                          <img src={Edit} alt="edit" />
+                          Edit
+                        </Button>
+                        <Button
+                          className="style.button"
+                          variant="outline-danger"
+                        >
+                          <img src={Trash} alt="trash" />
+                          Delete
+                        </Button>
+                      </ButtonGroup>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
           </Row>
         </Container>
