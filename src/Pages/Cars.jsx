@@ -14,9 +14,10 @@ import {
 } from "react-bootstrap";
 import style from "../style/card.module.css";
 import Clock from "../assets/fi_clock.png";
-import Trash from "../assets/fi_trash-2.png";
 import Users from "../assets/fi_users.png";
 import Edits from "../assets/fi_edit.png";
+import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
+import EditForm from "../Components/Crud/EditForm";
 
 const Cars = () => {
   const [data, setData] = useState([]);
@@ -71,13 +72,16 @@ const Cars = () => {
                       <img src={Clock} alt="clock" />
                       Updated at 4 Apr 2022, 09.00
                     </Card.Subtitle>
-                    <Button className="style.button" variant="success">
-                      <img src={Edits} alt="edit" /> Edit
+                    <Button
+                      src={EditForm}
+                      className="style.button"
+                      variant="success"
+                    >
+                      <img src={Edits} alt="edit" />
+                      Edit
                     </Button>
-                    <Button className="style.button" variant="outline-danger">
-                      <img src={Trash} alt="trash" />
-                      Delete
-                    </Button>
+                    <EditForm>Edit</EditForm>
+                    <DeleteConfirmationDialog>Delete</DeleteConfirmationDialog>
                   </Card.Body>
                 </Card>
               </Col>
