@@ -1,6 +1,7 @@
 .cards {
-  margin: 48px 143.5px !important;
-  flex-direction: row !important;
+  height: 100px;
+  width: 50px;
+  flex-wrap: wrap !important;
 }
 
 .carCard {
@@ -26,13 +27,14 @@
   font-weight: 700;
 }
 
-.cards .cardBody .button {
+.button {
   padding: 12px 0;
   font-size: 14px;
   font-weight: 700;
-  background-color: #5cb85f !important;
+  gap: 8px;
   border-radius: 2px;
   border: none;
+  flex-direction: row;
 }
 
 @media (max-width: 360px) {

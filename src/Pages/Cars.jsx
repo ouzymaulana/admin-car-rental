@@ -10,12 +10,13 @@ import {
   Container,
   Row,
   Col,
+  CardGroup,
 } from "react-bootstrap";
 import style from "../style/card.module.css";
 import Clock from "../assets/fi_clock.png";
 import Trash from "../assets/fi_trash-2.png";
 import Users from "../assets/fi_users.png";
-import Edit from "../assets/fi_edit.png";
+import Edits from "../assets/fi_edit.png";
 
 const Cars = () => {
   const [data, setData] = useState([]);
@@ -45,14 +46,14 @@ const Cars = () => {
   return (
     <LayoutAdmin>
       <div>Cars Menu</div>
-      <div className={style.cardlistcontainer}>
-        <Container className={style.container}>
-          <Row>
+      <div className={style.Card}>
+        <Container className={style.Container}>
+          <Row id="card-car">
             {data.map((item) => (
-              <Col lg={5} md={7} sm={12} className="mb-4">
+              <Col lg={4} md={6} sm={12} className="mb-4">
                 <Card
                   style={{ width: "18rem" }}
-                  className={style.carCard}
+                  className="shadow-sm"
                   key={item.id}
                 >
                   <Card.Body className={style.cardBody}>
@@ -70,21 +71,13 @@ const Cars = () => {
                       <img src={Clock} alt="clock" />
                       Updated at 4 Apr 2022, 09.00
                     </Card.Subtitle>
-                    <div className="d-grid gap-2">
-                      <ButtonGroup className="d grid gap-8" size="sm">
-                        <Button className="style.button" variant="success">
-                          <img src={Edit} alt="edit" />
-                          Edit
-                        </Button>
-                        <Button
-                          className="style.button"
-                          variant="outline-danger"
-                        >
-                          <img src={Trash} alt="trash" />
-                          Delete
-                        </Button>
-                      </ButtonGroup>
-                    </div>
+                    <Button className="style.button" variant="success">
+                      <img src={Edits} alt="edit" /> Edit
+                    </Button>
+                    <Button className="style.button" variant="outline-danger">
+                      <img src={Trash} alt="trash" />
+                      Delete
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>
