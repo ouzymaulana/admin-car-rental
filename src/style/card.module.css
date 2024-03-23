@@ -1,49 +1,71 @@
-.cards {
-  height: 482px;
-  width: 351px;
+.card {
+  display: flex;
+  flex-direction: row !important;
   flex-wrap: wrap !important;
+  gap: 24px;
+  margin-top: 24px;
+  margin-bottom: 28px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.carCard {
-  box-sizing: content-box !important;
-  width: 310px !important;
-  padding: 24px !important;
+.body {
+  padding: 0;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.cards .cardBody {
-  padding: 0 !important;
-  font-size: 14px;
+.cardimg {
+  height: 222px;
+  width: 282px;
+  border-radius: 5px;
+}
+
+.cardtitle {
   font-weight: 700;
-  gap: 8px !important;
-  /* text-align: justify; */
-}
-
-.cards .cardBody p:first-child {
-  font-weight: 400 !important;
-}
-
-.cards .cardTitle {
   font-size: 16px;
+  line-height: 24px;
+  font-family: Arial;
+}
+
+.name {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.price {
   font-weight: 700;
+  font-size: 16px;
+}
+
+.category {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.update {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .button {
-  padding: 12px 0;
-  font-size: 14px;
-  font-weight: 700;
-  gap: 8px;
-  border-radius: 2px;
-  border: none;
-  flex-direction: row;
+  padding: 8px 12px 8px 12px;
+  gap: 12px;
+  border-radius: 2px 0px 0px 0px;
+  opacity: 0px;
 }
 
 @media (max-width: 360px) {
-  .cards {
+  .card {
     margin: 40px 16px !important;
     flex-direction: column;
   }
 
-  .carCard {
+  .body {
     box-sizing: border-box !important;
     width: 100% !important;
     padding: 24px !important;
