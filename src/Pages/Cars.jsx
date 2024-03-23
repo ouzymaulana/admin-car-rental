@@ -80,7 +80,6 @@ const Cars = () => {
                       <img src={Edits} alt="edit" />
                       Edit
                     </Button>
-                    <EditForm>Edit</EditForm>
                     <DeleteConfirmationDialog>Delete</DeleteConfirmationDialog>
                   </Card.Body>
                 </Card>
