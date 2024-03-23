@@ -13,6 +13,7 @@ import {
 import style from "../style/card.module.css";
 
 const Cars = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
@@ -39,8 +40,10 @@ const Cars = () => {
 
   return (
     <LayoutAdmin>
-      <div>Cars Menu</div>
-      <Button align="right"> + Add New Car</Button>
+      <p style={{ fontSize: "20px", fontWeight: "700" }}>Add New Car</p>
+      <Button align="right" onClick={() => navigate("/cars/add-cars")}>
+        + Add New Car
+      </Button>
       <div>
         <Container>
           <Row>
