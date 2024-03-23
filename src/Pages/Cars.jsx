@@ -20,7 +20,6 @@ import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
 
 const Cars = () => {
   const [data, setData] = useState([]);
-  const [category, setCategory] = useState("all");
 
   const fetchData = async () => {
     try {
@@ -76,44 +75,9 @@ const Cars = () => {
     } ${date.getFullYear()}`;
   };
 
-  fetchData() = [category];
-  const handleCategoryChange = (selectedCategory) => {
-    setCategory(selectedCategory);
-  };
-
   return (
     <LayoutAdmin>
       <div>Cars Menu</div>
-      <div>
-        {data.map((item) => (
-          <ButtonGroup>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleCategoryChange("All")}
-            >
-              All
-            </Button>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleCategoryChange("small")}
-            >
-              2 - 4 People
-            </Button>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleCategoryChange("medium")}
-            >
-              4 - 6 People
-            </Button>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleCategoryChange("large")}
-            >
-              6 - 8 People
-            </Button>
-          </ButtonGroup>
-        ))}
-      </div>
       <div className={style.card}>
         {data.map((item) => (
           <Card
