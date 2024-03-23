@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LayoutAdmin from "../Layout";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import {
   Button,
-  ButtonGroup,
   CardSubtitle,
   Container,
   Row,
@@ -72,15 +71,14 @@ const Cars = () => {
                       <img src={Clock} alt="clock" />
                       Updated at 4 Apr 2022, 09.00
                     </Card.Subtitle>
-                    <Button
-                      src={EditForm}
-                      className="style.button"
-                      variant="success"
-                    >
-                      <img src={Edits} alt="edit" />
-                      Edit
-                    </Button>
                     <DeleteConfirmationDialog>Delete</DeleteConfirmationDialog>
+                    <div className="style.button">
+                      <Link to={"/Components/Crud/EditForm"} />
+                      <Button className="style.button" variant="success">
+                        <img src={Edits} alt="edit" />
+                        Edit
+                      </Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
