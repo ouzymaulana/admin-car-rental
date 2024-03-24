@@ -1,0 +1,25 @@
+.rectangle {
+  background-color: blue;
+  width: 4px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+.fontcustom {
+  font-size: 12px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.filters {
+  display: flex;
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.gobutton {
+  background-color: blue !important;
+  padding: 8px, 12px, 8px, 12px;
+  border-radius: 0px, 2px, 2px, 0px;
+}

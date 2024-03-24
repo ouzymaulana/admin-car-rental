@@ -154,7 +154,12 @@ const ListOrderTable = () => {
               <td>{item.Car || "-"}</td>
               <td>{moment(item.start_rent_at).format("DD MMMM YYYY")}</td>
               <td>{moment(item.finish_rent_at).format("DD MMMM YYYY")}</td>
-              <td>{item.total_price}</td>
+              <td>
+                {new Intl.NumberFormat("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                }).format(item.total_price)}
+              </td>
             </tr>
           ))}
         </tbody>

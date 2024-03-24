@@ -14,7 +14,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function SignInForm() {
+const SignInForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -114,6 +114,6 @@ function SignInForm() {
       </Container>
     </>
   );
-}
+};
 
 export default SignInForm;

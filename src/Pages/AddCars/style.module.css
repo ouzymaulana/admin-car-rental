@@ -1,0 +1,46 @@
+.formAddData {
+  background-color: white;
+  padding-left: 16px;
+  padding-right: 590px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.inputForm {
+  height: 36px;
+  width: 339px;
+  margin-bottom: 15px;
+}
+
+.inputForm .formControl {
+  border-radius: 0;
+}
+
+.buttonActionForm {
+  display: flex;
+  gap: 16px;
+  position: absolute;
+  bottom: 38px;
+}
+
+.buttonCancel {
+  border: 1px solid #0d28a6 !important;
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+  color: #0d28a6 !important;
+}
+
+.buttonCancel:hover {
+  background-color: #0d28a6 !important;
+  color: white !important;
+}
+
+.buttonSubmit {
+  background-color: #0d28a6 !important;
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+}
+
+.placeholderOption {
+  color: #afafaf !important;
+}
