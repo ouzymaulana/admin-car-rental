@@ -13,7 +13,11 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: <Dashboard />,
+      element: (
+        <ValueFilterByNameContextProvider>
+          <Dashboard />
+        </ValueFilterByNameContextProvider>
+      ),
     },
     {
       path: "/cars",
@@ -25,7 +29,11 @@ function App() {
     },
     {
       path: "/cars/add-cars",
-      element: <AddCars />,
+      element: (
+        <ValueFilterByNameContextProvider>
+          <AddCars />
+        </ValueFilterByNameContextProvider>
+      ),
     },
   ]);
   return <RouterProvider router={router} />;
