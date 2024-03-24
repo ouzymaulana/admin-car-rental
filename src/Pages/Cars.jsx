@@ -105,6 +105,45 @@ const Cars = () => {
           + Add New Car
         </Button>
       </div>
+      <br />
+      <div className={style.sortbutton}>
+        <Button
+          align="left"
+          variant="outline-primary"
+          // onClick={() => handleSorting("null")}
+          className="rounded-0"
+          style={{ backgroundColor: "#aeb7e1", borderColor: "#0D28A6" }}
+        >
+          All
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          // onClick={() => handleSorting("category", "small")}
+          className="rounded-0"
+          style={{ borderColor: "#aeb7e1" }}
+        >
+          2 - 4 People
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          // onClick={() => handleSorting("category", "medium")}
+          className="rounded-0"
+          style={{ borderColor: "#aeb7e1" }}
+        >
+          4 - 6 People
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          // onClick={() => handleSorting("category", "large")}
+          className="rounded-0"
+          style={{ borderColor: "#aeb7e1" }}
+        >
+          6 - 8 People
+        </Button>{" "}
+      </div>
       <div className={style.card}>
         {data.map((item) => (
           <Card
