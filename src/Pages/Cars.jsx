@@ -72,20 +72,24 @@ const Cars = () => {
     "Friday",
     "Saturday",
   ];
-
   const formatUpdatedAt = (dateString) => {
     const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${dayNames[date.getDay()]}, ${date.getDate()} ${
       monthNames[date.getMonth()]
-    } ${date.getFullYear()}`;
+    } ${date.getFullYear()} ${hours}.${minutes}`;
   };
 
   const handleSorting = (sortBy, order) => {
     fetchData(sortBy, order); // Mengirim permintaan ke API untuk sorting
   };
 
-  const handleToggleEditForm = () => {
-    setShowEditForm(!showEditForm);
+  const handleEdit = (item) => {
+    // Menambahkan logika untuk menampilkan formulir edit
+    setShowEditForm(true);
+    // Anda juga dapat mengirim data item ke formulir edit jika diperlukan
+    console.log("Edit button clicked for item:", item);
   };
 
   return (
