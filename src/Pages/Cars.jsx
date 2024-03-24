@@ -1,21 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LayoutAdmin from "../Layout";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import {
-  Button,
-  CardSubtitle,
-  Container,
-  Row,
-  Col,
-  CardGroup,
-  ButtonGroup,
-} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import style from "../style/card.module.css";
 import Clock from "../assets/fi_clock.png";
 import Users from "../assets/fi_users.png";
 import Edits from "../assets/fi_edit.png";
+import { LiaEdit } from "react-icons/lia";
 import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
 
 const Cars = () => {
@@ -78,15 +71,34 @@ const Cars = () => {
 
   return (
     <LayoutAdmin>
-      <div>Cars Menu</div>
+      <div className="d-flex justify-content-between">
+        <div
+          style={{
+            fontSize: "20px",
+            fontWeight: "700",
+            fontFamily: "Arial",
+            lineHeight: "30px",
+          }}
+        >
+          List Car
+        </div>
+        <Button
+          align="right"
+          className="rounded-0"
+          onClick={() => navigate("/cars/add-cars")}
+          style={{ backgroundColor: "#0d28a6" }}
+        >
+          + Add New Car
+        </Button>
+      </div>
       <div className={style.card}>
         {data.map((item) => (
           <Card
             style={{
               width: "351px",
-              height: "482",
+              height: "482px",
               padding: "24px",
-              marginBottom: "20px",
+              // marginBottom: "20px",
             }}
             key={item.id}
           >
@@ -112,70 +124,30 @@ const Cars = () => {
               <span className={style.category}>
                 <img src={Users} alt="users" />
                 {item.category === "large"
-                  ? "6 - 8 People"
+                  ? " 6 - 8 People"
                   : item.category === "medium"
-                  ? "4 - 6 People"
+                  ? " 4 - 6 People"
                   : item.category === "small"
-                  ? "2 - 4 People"
+                  ? " 2 - 4 People"
                   : null}
               </span>
               <span className={style.update}>
                 <img src={Clock} alt="clock" />
-                Updated At :{formatUpdatedAt(item.updatedAt)}
+                Updated At : {formatUpdatedAt(item.updatedAt)}
               </span>
               <div className="d-flex flex-row gap-4">
                 <DeleteConfirmationDialog>Delete</DeleteConfirmationDialog>
-                <Button style={{ width: "100%" }} variant="success">
-                  <img src={Edits} alt="edit" />
+                <Button
+                  style={{ width: "100%" }}
+                  className="rounded-0 d-flex justify-content-center gap-2"
+                  variant="success"
+                >
+                  <LiaEdit size={20} />
                   Edit
                 </Button>
               </div>
             </Card.Body>
           </Card>
-
-          /*<Col lg={4} md={6} sm={12} className="mb-4">
-                <Card
-                  style={{ width: "18rem" }}
-                  className="shadow-sm"
-                  key={item.id}
-                >
-                  <Card.Body className={style.cardBody}>
-                    <Card.Img src={item.image} />
-                    <Card.Title>{item.name}</Card.Title>
-                    <Card.Title className={style.cardTitle}>
-                      Rp {item.price} / hari
-                    </Card.Title>
-                    <Card.Text>
-                      <img src={Users} alt="user" />
-                      {item.category}
-                    </Card.Text>
-                    <Card.Subtitle>{item.description}</Card.Subtitle>
-                    <Card.Subtitle>
-                      <img src={Clock} alt="clock" />
-                      Updated at 4 Apr 2022, 09.00
-                    </Card.Subtitle>
-
-                    <Container>
-                      <Row>
-                        <Col>
-                          <DeleteConfirmationDialog>
-                            Delete
-                          </DeleteConfirmationDialog>
-                        </Col>
-                        <Col>
-                          <div className="style.button">
-                            <Link to={EditForm} />
-                            <Button className="style.button" variant="success">
-                              <img src={Edits} alt="edit" />
-                              Edit
-                            </Button>
-                          </div>
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Card.Body>
-                </Card>
-              </Col>*/
         ))}
       </div>
     </LayoutAdmin>
@@ -183,11 +155,3 @@ const Cars = () => {
 };
 
 export default Cars;
-/*
-{
-  item.category === "large"
-    ? "6 - 8"
-    : item.category === "medium"
-    ? "4 - 6"
-    : "2 - 4";
-}*/

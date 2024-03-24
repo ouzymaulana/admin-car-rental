@@ -4,8 +4,10 @@ import LayoutAdmin from "../../Layout";
 import axios from "axios";
 import style from "./style.module.css";
 import { MdOutlineFileUpload } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const AddCars = () => {
+  const navigate = useNavigate();
   const [file, setFile] = useState([]);
   const [name, setName] = useState("");
   const [fileName, setFileName] = useState("");
@@ -229,7 +231,11 @@ const AddCars = () => {
         </Form>
       </div>
       <div className={style.buttonActionForm}>
-        <Button variant="outline-primary" className={style.buttonCancel}>
+        <Button
+          variant="outline-primary"
+          className={style.buttonCancel}
+          onClick={() => navigate("/cars")}
+        >
           Cancel
         </Button>
         <Button
