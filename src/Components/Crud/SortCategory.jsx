@@ -1,54 +1,65 @@
-import React, { useState } from "react";
-import { ButtonGroup, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
-const SortButtons = () => {
-  const [sortedData, setSortedData] = useState([]);
+function App() {
+  const [category, setCategory] = useState("all"); // State untuk menyimpan kategori mobil
+  const [cars, setCars] = useState([]); // State untuk menyimpan data mobil
 
-  const handleShow = () => setSortedData(true);
+  useEffect(() => {
+    // Fungsi untuk memuat data mobil dari API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.example.com/cars?category=${category}`
+        );
+        setCars(response.data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
 
-  const fetchData = async (category) => {
-    try {
-      const response = await axios.get(
-        "https://api-car-rental.binaracademy.org/admin/v2/car/",
-        {
-          headers: {
-            accept: "application/json",
-            access_token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTg3MDQ2OH0.WmZUb7_Bv6ml3HG4AMTC61xRIEZA7hU0WXSLM5IKouc",
-          },
-        }
-      );
-      setSortedData(response.data);
-    } catch (error) {
-      console.error("Error fetching sorted data: ", error);
-    }
+    fetchData(); // Memanggil fungsi untuk memuat data saat komponen dimuat
+  }, [category]); // Gunakan category sebagai dependensi, sehingga efek ini dipicu ketika kategori berubah
+
+  const handleCategoryChange = (selectedCategory) => {
+    setCategory(selectedCategory); // Memperbarui state kategori saat tombol sorting ditekan
   };
 
   return (
-    <ButtonGroup>
-      {item.category === "large"
-        ? "6 - 8 People"
-        : item.category === "medium"
-        ? "4 - 6 People"
-        : item.category === "small"
-        ? "2 - 4 People"
-        : null}
-      <Button variant="secondary" onClick={(handleShow) => fetchData("all")}>
-        {" "}
-        All
-      </Button>
-      <Button variant="secondary" onClick={(handleShow) => fetchData("small")}>
-        2 - 4 People
-      </Button>
-      <Button variant="secondary" onClick={(handleShow) => fetchData("medium")}>
-        4 - 6 People
-      </Button>
-      <Button variant="secondary" onClick={(handleShow) => fetchData("large")}>
-        6 - 8 People
-      </Button>
-    </ButtonGroup>
+    <div>
+      {/* Menampilkan data mobil */}
+      {data.map((item) => (
+        <div key={item.id}>
+          {/* Tombol sorting untuk setiap kategori */}
+          <Button
+            variant="primary"
+            onClick={() => handleCategoryChange("null")}
+          >
+            All
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => handleCategoryChange("small")}
+          >
+            2 - 4 People
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => handleCategoryChange("medium")}
+          >
+            4 - 6 People
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => handleCategoryChange("large")}
+          >
+            6 - 8 People
+          </Button>
+        </div>
+      ))}
+    </div>
   );
-};
+}
 
-export default SortCategory;
+export default SortingCategory;

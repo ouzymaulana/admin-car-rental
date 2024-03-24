@@ -3,7 +3,7 @@ import LayoutAdmin from "../Layout";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import { Button } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 import style from "../style/card.module.css";
 import Clock from "../assets/fi_clock.png";
 import Users from "../assets/fi_users.png";
@@ -79,6 +79,9 @@ const Cars = () => {
     } ${date.getFullYear()}`;
   };
 
+  const handleSorting = (sortBy, order) => {
+    fetchData(sortBy, order); // Mengirim permintaan ke API untuk sorting
+  };
   return (
     <LayoutAdmin>
       <div className={style.directoryLabel}>
@@ -96,6 +99,7 @@ const Cars = () => {
         >
           List Car
         </div>
+
         <Button
           align="right"
           className="rounded-0"
@@ -206,5 +210,4 @@ const Cars = () => {
     </LayoutAdmin>
   );
 };
-
 export default Cars;
