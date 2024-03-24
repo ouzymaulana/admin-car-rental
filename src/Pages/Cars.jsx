@@ -114,36 +114,55 @@ const Cars = () => {
         <Button
           align="left"
           variant="outline-primary"
-          // onClick={() => handleSorting("null")}
+          onClick={() => setFilterByCategory("")}
           className="rounded-0"
-          style={{ backgroundColor: "#aeb7e1", borderColor: "#0D28A6" }}
+          style={{
+            backgroundColor: filterByCategory === "" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
         >
           All
         </Button>{" "}
         <Button
           align="left"
           variant="outline-primary"
-          // onClick={() => handleSorting("category", "small")}
+          onClick={() => setFilterByCategory("small")}
           className="rounded-0"
-          style={{ borderColor: "#aeb7e1" }}
+          style={{
+            backgroundColor:
+              filterByCategory === "small" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
         >
           2 - 4 People
         </Button>{" "}
         <Button
           align="left"
           variant="outline-primary"
-          // onClick={() => handleSorting("category", "medium")}
+          onClick={() => setFilterByCategory("medium")}
           className="rounded-0"
-          style={{ borderColor: "#aeb7e1" }}
+          style={{
+            backgroundColor:
+              filterByCategory === "medium" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
         >
           4 - 6 People
         </Button>{" "}
         <Button
           align="left"
           variant="outline-primary"
-          // onClick={() => handleSorting("category", "large")}
+          onClick={() => setFilterByCategory("large")}
           className="rounded-0"
-          style={{ borderColor: "#aeb7e1" }}
+          style={{
+            backgroundColor:
+              filterByCategory === "large" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
         >
           6 - 8 People
         </Button>{" "}
