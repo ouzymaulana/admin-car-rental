@@ -1,7 +1,9 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SignIn from "./Pages/SignIn";
 import Dashboard from "./Pages/Dashboard";
-import CarList from "./Pages/Cars";
+import Cars from "./Pages/Cars";
+import AddCars from "./Pages/AddCars/AddCars";
+import ValueFilterByNameContextProvider from "./Context/ValueFilterByName/ValueFilterByNameProvider";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,11 +13,27 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: <Dashboard />,
+      element: (
+        <ValueFilterByNameContextProvider>
+          <Dashboard />
+        </ValueFilterByNameContextProvider>
+      ),
     },
     {
       path: "/cars",
-      element: <CarList />,
+      element: (
+        <ValueFilterByNameContextProvider>
+          <Cars />
+        </ValueFilterByNameContextProvider>
+      ),
+    },
+    {
+      path: "/cars/add-cars",
+      element: (
+        <ValueFilterByNameContextProvider>
+          <AddCars />
+        </ValueFilterByNameContextProvider>
+      ),
     },
   ]);
   return <RouterProvider router={router} />;

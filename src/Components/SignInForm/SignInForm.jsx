@@ -14,7 +14,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function SignInForm() {
+const SignInForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,6 +43,8 @@ function SignInForm() {
         if (result) {
           Cookies.set("token2", result.data.access_token, { expires: 1 / 24 });
           localStorage.setItem("token", result.data.access_token);
+          localStorage.setItem("userEmailLogin", result.data.email);
+          localStorage.setItem("userRoleLogin", result.data.role);
           navigate(`/dashboard`, { replace: true });
         }
       })
@@ -112,6 +114,6 @@ function SignInForm() {
       </Container>
     </>
   );
-}
+};
 
 export default SignInForm;

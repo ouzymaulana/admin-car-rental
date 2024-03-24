@@ -1,32 +1,33 @@
 .BG {
-    background-color: white;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  background-color: white;
+  height: 100vh;
+  width: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .logo {
-    width: 100px;
-    height: 34px;
-    margin-bottom: 2rem;
+  width: 100px;
+  height: 34px;
+  margin-bottom: 2rem;
 }
 
 .content {
-    padding-left: 6rem;
-    padding-right: 6rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
 }
 
 .submitbutton {
-    background-color: #0D28A6 !important;
-    color: white;
-    width: 100%;
+  background-color: #0d28a6 !important;
+  color: white;
+  width: 100%;
 }
 
 .alertcustom {
-    color: #D00C1A !important;
-    font-size: 12px;
-    font-family: Arial;
-    width: 100%;
-    height: 70px;
+  color: #d00c1a !important;
+  font-size: 12px;
+  font-family: Arial;
+  width: 100%;
+  height: 70px;
 }

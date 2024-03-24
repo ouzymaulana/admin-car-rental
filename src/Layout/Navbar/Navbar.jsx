@@ -1,15 +1,47 @@
-import React from "react";
-import { Button, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, NavDropdown, Navbar } from "react-bootstrap";
 import style from "./Navbar.module.css";
 import { TfiMenu } from "react-icons/tfi";
 import { Input } from "reactstrap";
 import { BiSearch } from "react-icons/bi";
-// import jwt from "jsonwebtoken";
+import { useNavigate } from "react-router-dom";
+import { useValueFilterByName } from "../../Context/ValueFilterByName/ValueFilterByNameProvider";
 
 const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
-  const data = localStorage.getItem("token");
+  const { filterByName, setFilterByName } = useValueFilterByName();
+  const [filter, setFilter] = useState("");
+  const navigate = useNavigate();
+  const userEmail = localStorage.getItem("userEmailLogin");
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
-  // const decodedData = jwt.decode(data);
+  function stringAvatar(name) {
+    const nameArray = name.split(" ");
+    if (nameArray.length >= 2) {
+      return {
+        children: `${nameArray[0][0]}${nameArray[1][0]}`,
+      };
+    } else if (nameArray.length === 1) {
+      return {
+        children: `${nameArray[0][0]}`,
+      };
+    } else {
+      return {
+        children: "",
+      };
+    }
+  }
+
+  const handleSubmitFilter = () => {
+    setFilterByName(filter);
+  };
+
+  const handleOnchangeFilter = (e) => {
+    setFilter(e.target.value);
+  };
+
   return (
     <Navbar expand="lg" className={`fixed-top ${style.navbarNav}`}>
       <Navbar.Brand href="#home" className={style.navbarBrand}></Navbar.Brand>
@@ -27,9 +59,15 @@ const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
               size={"1.4em"}
               className={`position-absolute ${style.iconSearch}`}
             />
-            <Input placeholder="Search" className={style.inputField} />
+            <Input
+              placeholder="Search"
+              value={filter}
+              onChange={handleOnchangeFilter}
+              className={style.inputField}
+            />
           </div>
           <Button
+            onClick={handleSubmitFilter}
             variant="outline"
             className="d-flex justify-content-center align-items-center rounded-0"
           >
@@ -39,9 +77,13 @@ const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
         <div
           className={`d-flex justify-content-center align-items-center ${style.profile}`}
         >
-          <div className={style.profileName}>U</div>
-          <NavDropdown title="Ouzy Maulana" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">LogOut</NavDropdown.Item>
+          <div className={style.profileName}>
+            {stringAvatar(userEmail).children.toUpperCase()}
+          </div>
+          <NavDropdown title={userEmail} id="basic-nav-dropdown">
+            <NavDropdown.Item onClick={handleLogout} href="#action/3.1">
+              LogOut
+            </NavDropdown.Item>
           </NavDropdown>
         </div>
       </div>

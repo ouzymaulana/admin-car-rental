@@ -13,6 +13,7 @@ const LayoutAdmin = ({ children }) => {
       />
       <div
         style={{
+          overflow: "auto",
           backgroundColor: "#F4F5F7",
           width: "100%",
           marginTop: "70px",
@@ -20,6 +21,7 @@ const LayoutAdmin = ({ children }) => {
           height: "calc(100vh - 70px)",
           padding: "25px",
           transition: "0.5s",
+          fontFamily: "Arial",
         }}
       >
         {children}
