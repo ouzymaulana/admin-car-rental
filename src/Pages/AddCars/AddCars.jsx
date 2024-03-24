@@ -91,6 +91,7 @@ const AddCars = () => {
         setCategory("");
         setHarga("");
         setName("");
+        setFileName("");
         setIsInputError({
           name: "",
           harga: "",
@@ -111,6 +112,12 @@ const AddCars = () => {
 
   return (
     <LayoutAdmin>
+      <div className={style.directoryLabel}>
+        <span>
+          Cars {">"} List Car {"> "}
+        </span>
+        <span>Add New Car</span>
+      </div>
       <p style={{ fontSize: "20px", fontWeight: "700" }}>Add New Car</p>
       <div className={style.formAddData}>
         {showAlert && (
