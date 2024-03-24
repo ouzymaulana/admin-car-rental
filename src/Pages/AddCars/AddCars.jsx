@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
 import LayoutAdmin from "../../Layout";
 import axios from "axios";
 import style from "./style.module.css";
+import { MdOutlineFileUpload } from "react-icons/md";
 
 const AddCars = () => {
   const [file, setFile] = useState([]);
   const [name, setName] = useState("");
+  const [fileName, setFileName] = useState("");
   const [harga, setHarga] = useState("");
   const [category, setCategory] = useState("");
-  const [status, setStatus] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const fileInputRef = useRef(null);
+
   const [isInputError, setIsInputError] = useState({
     name: "",
     harga: "",
@@ -43,8 +47,7 @@ const AddCars = () => {
         file: "File harus diunggah",
       }));
       isError = true;
-    } else if (file[0].size > 2 * 1024 * 1024) {
-      // Ukuran file lebih dari 2MB
+    } else if (file[0] && file[0].size > 2 * 1024 * 1024) {
       setIsInputError((prevState) => ({
         ...prevState,
         file: "Ukuran file harus kurang dari 2MB",
@@ -58,9 +61,7 @@ const AddCars = () => {
       }));
       isError = true;
     }
-
     if (isError) {
-      // Jika terjadi kesalahan, hentikan proses submit
       return;
     }
 
@@ -82,25 +83,43 @@ const AddCars = () => {
         }
       );
 
-      console.log(response);
+      if (response.status === 201) {
+        setShowAlert(true);
+        setFile("");
+        setCategory("");
+        setHarga("");
+        setName("");
+        setIsInputError({
+          name: "",
+          harga: "",
+          file: "",
+          category: "",
+        });
+      }
     } catch (e) {
       console.log(e.message);
     }
   };
 
-  useEffect(() => {
-    console.log("====================================");
-    console.log("name : ", name);
-    console.log("file : ", file);
-    console.log("harga : ", harga);
-    console.log("category : ", category);
-    console.log("====================================");
-  }, [name, file, harga, category]);
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setFileName(selectedFile ? selectedFile.name : "");
+  };
 
   return (
     <LayoutAdmin>
       <p style={{ fontSize: "20px", fontWeight: "700" }}>Add New Car</p>
       <div className={style.formAddData}>
+        {showAlert && (
+          <Alert
+            variant={"success"}
+            onClose={() => setShowAlert(false)}
+            dismissible
+          >
+            Successfully added data!!
+          </Alert>
+        )}
         <Form style={{ width: "40rem" }}>
           <Form.Group className="mb-3 d-flex justify-content-between">
             <Form.Label>
@@ -142,12 +161,35 @@ const AddCars = () => {
             </Form.Label>
             <div className={style.inputForm}>
               <Form.Control
-                type="file"
-                onChange={(e) => setFile(e.target.files)}
+                as="div"
                 className={style.formControl}
-                placeholder="Upload Foto Mobil"
-                accept="image/png, image/jpeg"
-              />
+                onClick={() => fileInputRef.current.click()}
+              >
+                {fileName ? (
+                  <span>{fileName}</span>
+                ) : (
+                  <span style={{ color: "#afafaf" }}>Upload Foto Mobil</span>
+                )}
+              </Form.Control>
+              <div style={{ position: "relative" }}>
+                <input
+                  type="file"
+                  onChange={handleFileChange}
+                  className={style.formControl}
+                  accept="image/png, image/jpeg"
+                  style={{ display: "none" }}
+                  ref={fileInputRef}
+                />
+                <MdOutlineFileUpload
+                  size={20}
+                  style={{
+                    position: "absolute",
+                    right: "10px",
+                    top: "-25px",
+                    color: "#afafaf",
+                  }}
+                />
+              </div>
               <div className="d-flex gap-1 flex-wrap">
                 <small style={{ color: "#afafaf" }}>File Size Max. 2MB</small>
                 {isInputError.file && (
@@ -165,11 +207,19 @@ const AddCars = () => {
                 onChange={(e) => setCategory(e.target.value)}
                 className={style.formControl}
                 placeholder="Kategori"
+                value={category}
               >
-                <option>Open this select menu</option>
-                <option value="large">Large</option>
-                <option value="medium">Medium</option>
-                <option value="small">Small</option>
+                <option
+                  value={""}
+                  className={style.placeholderOption}
+                  disabled
+                  hidden
+                >
+                  Pilih Kategori Mobil
+                </option>
+                <option value="large">6 - 8</option>
+                <option value="medium">4 - 6</option>
+                <option value="small">2 - 4</option>
               </Form.Select>
               {isInputError.category && (
                 <small style={{ color: "red" }}>{isInputError.category}</small>
