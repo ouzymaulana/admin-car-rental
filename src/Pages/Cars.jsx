@@ -10,10 +10,13 @@ import Users from "../assets/fi_users.png";
 import Edits from "../assets/fi_edit.png";
 import { LiaEdit } from "react-icons/lia";
 import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
+import { useValueFilterByName } from "../Context/ValueFilterByName/ValueFilterByNameProvider";
 
 const Cars = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const { filterByName } = useValueFilterByName();
+  const [filterByCategory, setFilterByCategory] = useState("");
 
   const fetchData = async () => {
     try {
@@ -25,6 +28,12 @@ const Cars = () => {
             access_token:
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwMTg3MDQ2OH0.WmZUb7_Bv6ml3HG4AMTC61xRIEZA7hU0WXSLM5IKouc",
           },
+          params: {
+            name: filterByName || "",
+            category: filterByCategory || "",
+            page: "1",
+            pageSize: "20",
+          },
         }
       );
       setData(response.data.cars);
@@ -35,7 +44,7 @@ const Cars = () => {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [filterByName, filterByCategory]);
 
   const monthNames = [
     "January",
@@ -71,6 +80,10 @@ const Cars = () => {
 
   return (
     <LayoutAdmin>
+      <div className={style.directoryLabel}>
+        <span>Cars {"> "}</span>
+        <span>List Car</span>
+      </div>
       <div className="d-flex justify-content-between">
         <div
           style={{

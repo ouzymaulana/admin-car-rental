@@ -44,3 +44,19 @@
 .placeholderOption {
   color: #afafaf !important;
 }
+
+.directoryLabel {
+  margin-bottom: 27px;
+  font-family: Arial;
+}
+
+.directoryLabel span:first-child {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.directoryLabel span:last-child {
+  font-size: 12px;
+  line-height: 18px;
+}
