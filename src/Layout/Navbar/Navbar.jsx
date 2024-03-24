@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, NavDropdown, Navbar } from "react-bootstrap";
 import style from "./Navbar.module.css";
 import { TfiMenu } from "react-icons/tfi";
@@ -6,9 +6,11 @@ import { Input } from "reactstrap";
 import { BiSearch } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { useValueFilterByName } from "../../Context/ValueFilterByName/ValueFilterByNameProvider";
+import { useSubmitButtonFilter } from "../../Context/SubmitButtonFilter/SubmitButtonFilterContextProvider";
 
 const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
   const { filterByName, setFilterByName } = useValueFilterByName();
+  const [filter, setFilter] = useState("");
   const navigate = useNavigate();
   const userEmail = localStorage.getItem("userEmailLogin");
   const handleLogout = () => {
@@ -33,8 +35,12 @@ const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
     }
   }
 
+  const handleSubmitFilter = () => {
+    setFilterByName(filter);
+  };
+
   const handleOnchangeFilter = (e) => {
-    setFilterByName(e.target.value);
+    setFilter(e.target.value);
   };
 
   return (
@@ -56,12 +62,13 @@ const NavbarComponent = ({ setIsCloseTogel, isCloseToggle }) => {
             />
             <Input
               placeholder="Search"
-              value={filterByName}
+              value={filter}
               onChange={handleOnchangeFilter}
               className={style.inputField}
             />
           </div>
           <Button
+            onClick={handleSubmitFilter}
             variant="outline"
             className="d-flex justify-content-center align-items-center rounded-0"
           >
