@@ -21,6 +21,7 @@ const LayoutAdmin = ({ children }) => {
           height: "calc(100vh - 70px)",
           padding: "25px",
           transition: "0.5s",
+          fontFamily: "Arial",
         }}
       >
         {children}
