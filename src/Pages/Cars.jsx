@@ -7,14 +7,15 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import style from "../style/card.module.css";
 import Clock from "../assets/fi_clock.png";
 import Users from "../assets/fi_users.png";
-import Edits from "../assets/fi_edit.png";
 import { LiaEdit } from "react-icons/lia";
 import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
 import { useValueFilterByName } from "../Context/ValueFilterByName/ValueFilterByNameProvider";
+import EditForm from "../Components/Crud/EditForm";
 
 const Cars = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const [showEditForm, setShowEditForm] = useState(false); // State untuk mengontrol tampilan formulir edit
   const [data, setData] = useState([]);
   const { filterByName } = useValueFilterByName();
   const [filterByCategory, setFilterByCategory] = useState("");
@@ -82,6 +83,11 @@ const Cars = () => {
   const handleSorting = (sortBy, order) => {
     fetchData(sortBy, order); // Mengirim permintaan ke API untuk sorting
   };
+
+  const handleToggleEditForm = () => {
+    setShowEditForm(!showEditForm);
+  };
+
   return (
     <LayoutAdmin>
       <div className={style.directoryLabel}>
@@ -217,6 +223,7 @@ const Cars = () => {
                   style={{ width: "100%" }}
                   className="rounded-0 d-flex justify-content-center gap-2"
                   variant="success"
+                  onClick={() => handleEdit(item)} // Tambahkan fungsi onClick untuk menampilkan formulir edit
                 >
                   <LiaEdit size={20} />
                   Edit
