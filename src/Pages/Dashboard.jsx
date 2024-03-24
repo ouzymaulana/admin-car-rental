@@ -1,9 +1,9 @@
-import ChartData from "../Components/Chart/ChartData";
 import LayoutAdmin from "../Layout";
 import ListOrderTable from "../Components/Table/ListOrderTable";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { Button } from "react-bootstrap";
+import DataChart from "../Components/Chart/DataChart";
+import Breadcr from "../Components/Chart/BreadCrumbs";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -19,7 +19,8 @@ const Dashboard = () => {
   return (
     <LayoutAdmin>
       <div className={`list-order`}>
-        <ChartData />
+        <Breadcr />
+        <DataChart />
         <p style={{ fontSize: "20px", fontWeight: "700" }}>Dashboard</p>
         <div className="d-flex gap-2">
           <div
