@@ -63,6 +63,16 @@
   opacity: 0px;
 }
 
+.sortbutton {
+  align-items: flex-end;
+  align-self: flex-start;
+  padding: 8px 12px 8px 12px;
+  gap: 16px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+  border-color: #aeb7e1 !important;
+}
+
 @media (max-width: 360px) {
   .card {
     margin: 40px 16px !important;

@@ -3,13 +3,14 @@ import LayoutAdmin from "../Layout";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import { Button } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 import style from "../style/card.module.css";
 import Clock from "../assets/fi_clock.png";
 import Users from "../assets/fi_users.png";
 import Edits from "../assets/fi_edit.png";
 import { LiaEdit } from "react-icons/lia";
 import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
+import EditForm from "../Components/Crud/EditForm";
 
 const Cars = () => {
   const navigate = useNavigate();
@@ -69,6 +70,9 @@ const Cars = () => {
     } ${date.getFullYear()}`;
   };
 
+  const handleSorting = (sortBy, order) => {
+    fetchData(sortBy, order); // Mengirim permintaan ke API untuk sorting
+  };
   return (
     <LayoutAdmin>
       <div className="d-flex justify-content-between">
@@ -82,6 +86,7 @@ const Cars = () => {
         >
           List Car
         </div>
+
         <Button
           align="right"
           className="rounded-0"
@@ -90,6 +95,45 @@ const Cars = () => {
         >
           + Add New Car
         </Button>
+      </div>
+      <br />
+      <div align="left" className={style.sortbutton}>
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => handleSorting("null")}
+          className="rounded-0"
+          style={{ backgroundColor: "#aeb7e1", borderColor: "#0D28A6" }}
+        >
+          All
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => handleSorting("category", "small")}
+          className="rounded-0"
+          style={{ borderColor: "#aeb7e1" }}
+        >
+          2 - 4 People
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => handleSorting("category", "medium")}
+          className="rounded-0"
+          style={{ borderColor: "#aeb7e1" }}
+        >
+          4 - 6 People
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => handleSorting("category", "large")}
+          className="rounded-0"
+          style={{ borderColor: "#aeb7e1" }}
+        >
+          6 - 8 People
+        </Button>{" "}
       </div>
       <div className={style.card}>
         {data.map((item) => (
@@ -153,5 +197,4 @@ const Cars = () => {
     </LayoutAdmin>
   );
 };
-
 export default Cars;
