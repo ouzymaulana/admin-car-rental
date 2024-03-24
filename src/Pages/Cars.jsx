@@ -209,9 +209,9 @@ const Cars = () => {
               </span>
               <span className={style.update}>
                 <img src={Clock} alt="clock" />
-                Updated At : {formatUpdatedAt(item.updatedAt)}
+                Updated At {formatUpdatedAt(item.updatedAt)}
               </span>
-              <div className="d-flex flex-row gap-4">
+              <div className="d-flex flex-row gap-3">
                 <DeleteConfirmationDialog>Delete</DeleteConfirmationDialog>
                 <Button
                   style={{ width: "100%" }}
