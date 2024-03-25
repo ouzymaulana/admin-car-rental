@@ -218,17 +218,29 @@ const Cars = () => {
               />
             ) : (
               <div
+                className="d-flex justify-content-center align-items-center"
                 style={{
                   height: "222px",
                   width: "303px",
                   borderRadius: "5px",
                   backgroundColor: "#afafaf",
                 }}
-              ></div>
+              >
+                <span
+                  style={{
+                    fontSize: "1.5em",
+                    fontWeight: "700",
+                    color: "#D8D8D8",
+                  }}
+                  className="font-monospace"
+                >
+                  222 X 303
+                </span>
+              </div>
             )}
             <Card.Body className={style.body}>
-              <span className={style.name}>{item.name}</span>
-              <span className={style.price}>Rp {item.price}/hari</span>
+              <span className={style.name}>{item.name || "-"}</span>
+              <span className={style.price}>Rp {item.price || "-"}/hari</span>
               <span className={style.category}>
                 <img src={Users} alt="users" />
                 {item.category === "large"
@@ -237,7 +249,7 @@ const Cars = () => {
                   ? " 4 - 6 People"
                   : item.category === "small"
                   ? " 2 - 4 People"
-                  : null}
+                  : " -"}
               </span>
               <span className={style.update}>
                 <img src={Clock} alt="clock" />

@@ -103,7 +103,7 @@ const EditCars = () => {
       formData.append("category", category);
       formData.append("price", harga);
       formData.append("status", "true");
-      formData.append("image", file[0]);
+      formData.append("image", file);
       // Edit API
       const response = await axios.put(
         `https://api-car-rental.binaracademy.org/admin/car/${id}`,
