@@ -3,10 +3,11 @@ import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import Mobil from "../../assets/img-BeepBeep.png";
 import { MdOutlineDelete } from "react-icons/md";
+import { useAlertAfterExecute } from "../../Context/AlertAfterExecute/AlertAfterExecuteContextProvider";
 
-const DeleteConfirmationDialog = ({ id, onDelete }) => {
+const DeleteConfirmationDialog = ({ id, setIsDeleteSuccess }) => {
+  const { setAlertExecute } = useAlertAfterExecute();
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -26,10 +27,15 @@ const DeleteConfirmationDialog = ({ id, onDelete }) => {
           },
         }
       );
-      console.log("response : ", response);
-      onDelete(id);
-      console.log(onDelete);
-      handleClose();
+      if (response.status === 200) {
+        setAlertExecute({
+          status: true,
+          label: "hapus",
+          message: "Data Berhasil di Hapus",
+        });
+        setIsDeleteSuccess((prev) => !prev);
+        handleClose();
+      }
     } catch (error) {
       console.error("Error deleting data: ", error);
     }
