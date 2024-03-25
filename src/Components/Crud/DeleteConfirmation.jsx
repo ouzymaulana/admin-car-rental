@@ -14,7 +14,7 @@ const DeleteConfirmationDialog = ({ id, onDelete }) => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        "https://api-car-rental.binaracademy.org/admin/car",
+        "https://api-car-rental.binaracademy.org/admin/car/",
         {
           headers: {
             accept: "application/json",
