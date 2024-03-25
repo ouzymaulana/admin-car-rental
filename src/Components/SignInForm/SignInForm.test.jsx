@@ -56,7 +56,7 @@ describe("SignInForm", () => {
     fireEvent.click(signInButton);
 
     await waitFor(() => {
-      expect(mockAxios.history.post.length).toBe(1);
+      expect(mockAxios.history.post.length).toBe();
     });
 
     expect(Cookies.get("token2")).toBe(
