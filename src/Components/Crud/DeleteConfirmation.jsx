@@ -26,6 +26,7 @@ const DeleteConfirmationDialog = ({ id, onDelete }) => {
           },
         }
       );
+      console.log("response : ", response);
       onDelete(id);
       console.log(onDelete);
       handleClose();
@@ -37,7 +38,15 @@ const DeleteConfirmationDialog = ({ id, onDelete }) => {
   return (
     <>
       <Button
-        style={{ border: "2px solid #FA2C5A", width: "100%" }}
+        style={{
+          border: "2px solid #FA2C5A",
+          borderRadius: "1px",
+          padding: "8px, 12px, 8px, 12px",
+          width: "100%",
+          fontFamily: "arial",
+          fontSize: "14",
+          alignContent: "center",
+        }}
         variant="outline-danger"
         onClick={handleShow}
         className="rounded-0 d-flex justify-content-center gap-1"

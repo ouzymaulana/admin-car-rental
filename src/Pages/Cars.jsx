@@ -12,8 +12,10 @@ import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
 import { useValueFilterByName } from "../Context/ValueFilterByName/ValueFilterByNameProvider";
 
 const Cars = () => {
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const location = useLocation();
+  const [showEditForm, setShowEditForm] = useState(false); // State untuk mengontrol tampilan formulir edit
   const [data, setData] = useState([]);
   const { filterByName } = useValueFilterByName();
   const [filterByCategory, setFilterByCategory] = useState("");
@@ -72,12 +74,13 @@ const Cars = () => {
     "Friday",
     "Saturday",
   ];
-
   const formatUpdatedAt = (dateString) => {
     const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${dayNames[date.getDay()]}, ${date.getDate()} ${
       monthNames[date.getMonth()]
-    } ${date.getFullYear()}`;
+    } ${date.getFullYear()} ${hours}.${minutes}`;
   };
 
   // Edit Stuff
@@ -119,6 +122,7 @@ const Cars = () => {
             </Alert>
           )}
         </div>
+
         <Button
           align="right"
           className="rounded-0"
@@ -127,6 +131,64 @@ const Cars = () => {
         >
           + Add New Car
         </Button>
+      </div>
+      <br />
+      <div className={style.sortbutton}>
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => setFilterByCategory("")}
+          className="rounded-0"
+          style={{
+            backgroundColor: filterByCategory === "" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
+        >
+          All
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => setFilterByCategory("small")}
+          className="rounded-0"
+          style={{
+            backgroundColor:
+              filterByCategory === "small" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
+        >
+          2 - 4 People
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => setFilterByCategory("medium")}
+          className="rounded-0"
+          style={{
+            backgroundColor:
+              filterByCategory === "medium" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
+        >
+          4 - 6 People
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => setFilterByCategory("large")}
+          className="rounded-0"
+          style={{
+            backgroundColor:
+              filterByCategory === "large" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
+        >
+          6 - 8 People
+        </Button>{" "}
       </div>
       <div className={style.card}>
         {data.map((item) => (
@@ -170,9 +232,9 @@ const Cars = () => {
               </span>
               <span className={style.update}>
                 <img src={Clock} alt="clock" />
-                Updated At : {formatUpdatedAt(item.updatedAt)}
+                Updated At {formatUpdatedAt(item.updatedAt)}
               </span>
-              <div className="d-flex flex-row gap-4">
+              <div className="d-flex flex-row gap-3">
                 <DeleteConfirmationDialog>Delete</DeleteConfirmationDialog>
                 <Button
                   style={{ width: "100%" }}
@@ -191,5 +253,4 @@ const Cars = () => {
     </LayoutAdmin>
   );
 };
-
 export default Cars;
