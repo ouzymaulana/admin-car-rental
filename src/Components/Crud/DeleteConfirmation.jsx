@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import Mobil from "../../assets/img-BeepBeep.png";
-import Trash from "../../assets/fi_trash-2.png";
 import { MdOutlineDelete } from "react-icons/md";
 
 const DeleteConfirmationDialog = ({ id, onDelete }) => {
@@ -13,8 +12,12 @@ const DeleteConfirmationDialog = ({ id, onDelete }) => {
 
   const handleDelete = async () => {
     try {
+      if (!id) {
+        console.error("ID is undefined");
+        return;
+      }
       const response = await axios.delete(
-        "https://api-car-rental.binaracademy.org/admin/car",
+        `https://api-car-rental.binaracademy.org/admin/car/${id}`,
         {
           headers: {
             accept: "application/json",
@@ -24,6 +27,7 @@ const DeleteConfirmationDialog = ({ id, onDelete }) => {
         }
       );
       onDelete(id);
+      console.log(onDelete);
       handleClose();
     } catch (error) {
       console.error("Error deleting data: ", error);

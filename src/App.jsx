@@ -4,6 +4,7 @@ import Dashboard from "./Pages/Dashboard";
 import Cars from "./Pages/Cars";
 import AddCars from "./Pages/AddCars/AddCars";
 import ValueFilterByNameContextProvider from "./Context/ValueFilterByName/ValueFilterByNameProvider";
+import EditCars from "./Pages/EditCars/EditCars";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,14 @@ function App() {
       element: (
         <ValueFilterByNameContextProvider>
           <AddCars />
+        </ValueFilterByNameContextProvider>
+      ),
+    },
+    {
+      path: "/cars/edit-cars/:id",
+      element: (
+        <ValueFilterByNameContextProvider>
+          <EditCars />
         </ValueFilterByNameContextProvider>
       ),
     },
