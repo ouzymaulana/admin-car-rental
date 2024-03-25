@@ -251,7 +251,7 @@ const AddCars = () => {
           type="submit"
           className={style.buttonSubmit}
         >
-          Submit
+          Save
         </Button>
       </div>
     </LayoutAdmin>

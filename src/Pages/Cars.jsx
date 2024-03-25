@@ -1,22 +1,23 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LayoutAdmin from "../Layout";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import style from "../style/card.module.css";
 import Clock from "../assets/fi_clock.png";
 import Users from "../assets/fi_users.png";
-import Edits from "../assets/fi_edit.png";
 import { LiaEdit } from "react-icons/lia";
 import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
 import { useValueFilterByName } from "../Context/ValueFilterByName/ValueFilterByNameProvider";
 
 const Cars = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [data, setData] = useState([]);
   const { filterByName } = useValueFilterByName();
   const [filterByCategory, setFilterByCategory] = useState("");
+  const [showEditSuccessAlert, setShowEditSuccessAlert] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -42,6 +43,7 @@ const Cars = () => {
       console.error(error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, [filterByName, filterByCategory]);
@@ -78,6 +80,17 @@ const Cars = () => {
     } ${date.getFullYear()}`;
   };
 
+  // Edit Stuff
+  useEffect(() => {
+    if (location.state && location.state.editSuccess) {
+      setShowEditSuccessAlert(true);
+    }
+  }, [location.state]);
+
+  const handleEdit = (carId) => {
+    navigate(`/cars/edit-cars/${carId}`);
+  };
+
   return (
     <LayoutAdmin>
       <div className={style.directoryLabel}>
@@ -94,6 +107,17 @@ const Cars = () => {
           }}
         >
           List Car
+        </div>
+        <div>
+          {showEditSuccessAlert && (
+            <Alert
+              variant={"success"}
+              onClose={() => setShowEditSuccessAlert(false)}
+              dismissible
+            >
+              <strong>Data Berhasil Disimpan</strong>
+            </Alert>
+          )}
         </div>
         <Button
           align="right"
@@ -154,6 +178,7 @@ const Cars = () => {
                   style={{ width: "100%" }}
                   className="rounded-0 d-flex justify-content-center gap-2"
                   variant="success"
+                  onClick={() => handleEdit(item.id)}
                 >
                   <LiaEdit size={20} />
                   Edit
