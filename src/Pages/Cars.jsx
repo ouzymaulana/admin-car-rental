@@ -3,20 +3,25 @@ import LayoutAdmin from "../Layout";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import { Alert, Button } from "react-bootstrap";
+import { Alert, Button, Toast } from "react-bootstrap";
 import style from "../style/card.module.css";
 import Clock from "../assets/fi_clock.png";
 import Users from "../assets/fi_users.png";
 import { LiaEdit } from "react-icons/lia";
 import DeleteConfirmationDialog from "../Components/Crud/DeleteConfirmation";
 import { useValueFilterByName } from "../Context/ValueFilterByName/ValueFilterByNameProvider";
+import { useAlertAfterExecute } from "../Context/AlertAfterExecute/AlertAfterExecuteContextProvider";
 
 const Cars = () => {
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const location = useLocation();
+  const [showEditForm, setShowEditForm] = useState(false);
   const [data, setData] = useState([]);
   const { filterByName } = useValueFilterByName();
+  const { AlertExecute, setAlertExecute } = useAlertAfterExecute();
   const [filterByCategory, setFilterByCategory] = useState("");
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [showEditSuccessAlert, setShowEditSuccessAlert] = useState(false);
 
   const fetchData = async () => {
@@ -46,7 +51,7 @@ const Cars = () => {
 
   useEffect(() => {
     fetchData();
-  }, [filterByName, filterByCategory]);
+  }, [filterByName, filterByCategory, isDeleteSuccess]);
 
   const monthNames = [
     "January",
@@ -72,12 +77,13 @@ const Cars = () => {
     "Friday",
     "Saturday",
   ];
-
   const formatUpdatedAt = (dateString) => {
     const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${dayNames[date.getDay()]}, ${date.getDate()} ${
       monthNames[date.getMonth()]
-    } ${date.getFullYear()}`;
+    } ${date.getFullYear()} ${hours}.${minutes}`;
   };
 
   // Edit Stuff
@@ -97,6 +103,24 @@ const Cars = () => {
         <span>Cars {"> "}</span>
         <span>List Car</span>
       </div>
+      <div className="d-flex justify-content-center">
+        {AlertExecute.status === true && (
+          <Alert
+            style={{ zIndex: "20", width: "40rem" }}
+            variant={"success"}
+            onClose={() =>
+              setAlertExecute({
+                status: false,
+                label: "",
+                message: "",
+              })
+            }
+            dismissible
+          >
+            {AlertExecute.message}
+          </Alert>
+        )}
+      </div>
       <div className="d-flex justify-content-between">
         <div
           style={{
@@ -108,17 +132,6 @@ const Cars = () => {
         >
           List Car
         </div>
-        <div>
-          {showEditSuccessAlert && (
-            <Alert
-              variant={"success"}
-              onClose={() => setShowEditSuccessAlert(false)}
-              dismissible
-            >
-              <strong>Data Berhasil Disimpan</strong>
-            </Alert>
-          )}
-        </div>
         <Button
           align="right"
           className="rounded-0"
@@ -127,6 +140,64 @@ const Cars = () => {
         >
           + Add New Car
         </Button>
+      </div>
+      <br />
+      <div className={style.sortbutton}>
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => setFilterByCategory("")}
+          className="rounded-0"
+          style={{
+            backgroundColor: filterByCategory === "" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
+        >
+          All
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => setFilterByCategory("small")}
+          className="rounded-0"
+          style={{
+            backgroundColor:
+              filterByCategory === "small" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
+        >
+          2 - 4 People
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => setFilterByCategory("medium")}
+          className="rounded-0"
+          style={{
+            backgroundColor:
+              filterByCategory === "medium" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
+        >
+          4 - 6 People
+        </Button>{" "}
+        <Button
+          align="left"
+          variant="outline-primary"
+          onClick={() => setFilterByCategory("large")}
+          className="rounded-0"
+          style={{
+            backgroundColor:
+              filterByCategory === "large" ? "#CFD4ED" : "#ffffff",
+            borderColor: filterByCategory === "" ? "#0D28A6" : "#AEB7E1",
+            color: "#0D28A6",
+          }}
+        >
+          6 - 8 People
+        </Button>{" "}
       </div>
       <div className={style.card}>
         {data.map((item) => (
@@ -170,10 +241,13 @@ const Cars = () => {
               </span>
               <span className={style.update}>
                 <img src={Clock} alt="clock" />
-                Updated At : {formatUpdatedAt(item.updatedAt)}
+                Updated At {formatUpdatedAt(item.updatedAt)}
               </span>
-              <div className="d-flex flex-row gap-4">
-                <DeleteConfirmationDialog>Delete</DeleteConfirmationDialog>
+              <div className="d-flex flex-row gap-3">
+                <DeleteConfirmationDialog
+                  id={item.id}
+                  setIsDeleteSuccess={setIsDeleteSuccess}
+                />
                 <Button
                   style={{ width: "100%" }}
                   className="rounded-0 d-flex justify-content-center gap-2"
@@ -191,5 +265,4 @@ const Cars = () => {
     </LayoutAdmin>
   );
 };
-
 export default Cars;

@@ -3,10 +3,11 @@ import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import Mobil from "../../assets/img-BeepBeep.png";
 import { MdOutlineDelete } from "react-icons/md";
+import { useAlertAfterExecute } from "../../Context/AlertAfterExecute/AlertAfterExecuteContextProvider";
 
-const DeleteConfirmationDialog = ({ id, onDelete }) => {
+const DeleteConfirmationDialog = ({ id, setIsDeleteSuccess }) => {
+  const { setAlertExecute } = useAlertAfterExecute();
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -26,9 +27,15 @@ const DeleteConfirmationDialog = ({ id, onDelete }) => {
           },
         }
       );
-      onDelete(id);
-      console.log(onDelete);
-      handleClose();
+      if (response.status === 200) {
+        setAlertExecute({
+          status: true,
+          label: "hapus",
+          message: "Data Berhasil di Hapus",
+        });
+        setIsDeleteSuccess((prev) => !prev);
+        handleClose();
+      }
     } catch (error) {
       console.error("Error deleting data: ", error);
     }
@@ -37,7 +44,15 @@ const DeleteConfirmationDialog = ({ id, onDelete }) => {
   return (
     <>
       <Button
-        style={{ border: "2px solid #FA2C5A", width: "100%" }}
+        style={{
+          border: "2px solid #FA2C5A",
+          borderRadius: "1px",
+          padding: "8px, 12px, 8px, 12px",
+          width: "100%",
+          fontFamily: "arial",
+          fontSize: "14",
+          alignContent: "center",
+        }}
         variant="outline-danger"
         onClick={handleShow}
         className="rounded-0 d-flex justify-content-center gap-1"

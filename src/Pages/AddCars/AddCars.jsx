@@ -5,6 +5,7 @@ import axios from "axios";
 import style from "./style.module.css";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useAlertAfterExecute } from "../../Context/AlertAfterExecute/AlertAfterExecuteContextProvider";
 
 const AddCars = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const AddCars = () => {
   const [category, setCategory] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const fileInputRef = useRef(null);
+  const { setAlertExecute } = useAlertAfterExecute();
 
   const [isInputError, setIsInputError] = useState({
     name: "",
@@ -73,7 +75,7 @@ const AddCars = () => {
       formData.append("category", category);
       formData.append("price", harga);
       formData.append("status", "true");
-      formData.append("image", file[0]);
+      formData.append("image", file);
       const response = await axios.post(
         "https://api-car-rental.binaracademy.org/admin/car",
         formData,
@@ -86,6 +88,11 @@ const AddCars = () => {
       );
 
       if (response.status === 201) {
+        setAlertExecute({
+          status: true,
+          label: "create",
+          message: "Data Berhasil Disimpan",
+        });
         setShowAlert(true);
         setFile("");
         setCategory("");
@@ -98,6 +105,7 @@ const AddCars = () => {
           file: "",
           category: "",
         });
+        navigate("/cars");
       }
     } catch (e) {
       console.log(e.message);
@@ -120,15 +128,6 @@ const AddCars = () => {
       </div>
       <p style={{ fontSize: "20px", fontWeight: "700" }}>Add New Car</p>
       <div className={style.formAddData}>
-        {showAlert && (
-          <Alert
-            variant={"success"}
-            onClose={() => setShowAlert(false)}
-            dismissible
-          >
-            Successfully added data!!
-          </Alert>
-        )}
         <Form style={{ width: "40rem" }}>
           <Form.Group className="mb-3 d-flex justify-content-between">
             <Form.Label>

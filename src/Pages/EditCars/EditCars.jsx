@@ -5,6 +5,7 @@ import axios from "axios";
 import style from "./style.module.css";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAlertAfterExecute } from "../../Context/AlertAfterExecute/AlertAfterExecuteContextProvider";
 
 const EditCars = () => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const EditCars = () => {
   const [harga, setHarga] = useState("");
   const [category, setCategory] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const { setAlertExecute } = useAlertAfterExecute();
 
   // Data Fetch from Cars Hit
   useEffect(() => {
@@ -126,6 +128,11 @@ const EditCars = () => {
           harga: "",
           file: "",
           category: "",
+        });
+        setAlertExecute({
+          status: true,
+          label: "edit",
+          message: "Data Berhasil di Edit",
         });
         navigate("/cars", { state: { editSuccess: true } });
       }

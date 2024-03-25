@@ -5,6 +5,7 @@ import Cars from "./Pages/Cars";
 import AddCars from "./Pages/AddCars/AddCars";
 import ValueFilterByNameContextProvider from "./Context/ValueFilterByName/ValueFilterByNameProvider";
 import EditCars from "./Pages/EditCars/EditCars";
+import AlertAfterExecuteContextProvider from "./Context/AlertAfterExecute/AlertAfterExecuteContextProvider";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,25 +24,31 @@ function App() {
     {
       path: "/cars",
       element: (
-        <ValueFilterByNameContextProvider>
-          <Cars />
-        </ValueFilterByNameContextProvider>
+        <AlertAfterExecuteContextProvider>
+          <ValueFilterByNameContextProvider>
+            <Cars />
+          </ValueFilterByNameContextProvider>
+        </AlertAfterExecuteContextProvider>
       ),
     },
     {
       path: "/cars/add-cars",
       element: (
-        <ValueFilterByNameContextProvider>
-          <AddCars />
-        </ValueFilterByNameContextProvider>
+        <AlertAfterExecuteContextProvider>
+          <ValueFilterByNameContextProvider>
+            <AddCars />
+          </ValueFilterByNameContextProvider>
+        </AlertAfterExecuteContextProvider>
       ),
     },
     {
       path: "/cars/edit-cars/:id",
       element: (
-        <ValueFilterByNameContextProvider>
-          <EditCars />
-        </ValueFilterByNameContextProvider>
+        <AlertAfterExecuteContextProvider>
+          <ValueFilterByNameContextProvider>
+            <EditCars />
+          </ValueFilterByNameContextProvider>
+        </AlertAfterExecuteContextProvider>
       ),
     },
   ]);
